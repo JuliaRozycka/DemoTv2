@@ -1,14 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="edu.ib.TVDemoController"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #bfcfff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ib.TVDemoController">
+    <right>
+        <TableView fx:id="table" maxHeight="-Infinity" prefHeight="380.0" prefWidth="180.0" BorderPane.alignment="TOP_RIGHT">
+            <columns>
+                <TableColumn fx:id="time" editable="false" prefWidth="90.0" sortable="false" text="time" />
+                <TableColumn editable="false" prefWidth="90.0" sortable="false" text="x" fx:id="x" />
+            </columns>
+            <BorderPane.margin>
+                <Insets right="10.0" top="20.0" />
+            </BorderPane.margin>
+        </TableView>
+    </right>
+    <bottom>
+        <VBox alignment="CENTER" prefHeight="120.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+            <children>
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                    <children>
+                        <TextField fx:id="tfEquation" promptText="Enter the equation here:" style="-fx-background-color: white; -fx-border-color: #809fff;">
+                            <HBox.margin>
+                                <Insets left="20.0" right="20.0" />
+                            </HBox.margin>
+                        </TextField>
+                        <TextField fx:id="tfMin" prefWidth="100.0" promptText="Enter a:" style="-fx-background-color: white; -fx-border-color: #809fff;">
+                            <HBox.margin>
+                                <Insets left="20.0" right="20.0" />
+                            </HBox.margin></TextField>
+                        <TextField fx:id="tfMax" prefWidth="100.0" promptText="Enter b:" style="-fx-background-color: white; -fx-border-color: #809fff;">
+                            <HBox.margin>
+                                <Insets left="20.0" right="20.0" />
+                            </HBox.margin></TextField>
+                        <TextField fx:id="tfH" prefWidth="100.0" promptText="Enter h:" style="-fx-background-color: white; -fx-border-color: #809fff;">
+                            <HBox.margin>
+                                <Insets left="20.0" right="20.0" />
+                            </HBox.margin></TextField>
+                        <TextField fx:id="tfX0" prefWidth="100.0" promptText="Enter x0:" style="-fx-background-color: white; -fx-border-color: #809fff;">
+                            <HBox.margin>
+                                <Insets left="20.0" right="20.0" />
+                            </HBox.margin>
+                        </TextField>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                    <children>
+                        <Button fx:id="btnCalculate" mnemonicParsing="false" onAction="#btnCalculateClicked" style="-fx-background-radius: 5; -fx-background-color: #002db3;" text="Euler Method" textAlignment="CENTER" textFill="WHITE">
+                            <HBox.margin>
+                                <Insets bottom="10.0" left="5.0" right="5.0" />
+                            </HBox.margin></Button>
+                        <Button fx:id="btnCalculateModified" mnemonicParsing="false" onAction="#btnCalculateModifiedClicked" style="-fx-background-radius: 5; -fx-background-color: #002db3;" text="Modified Euler Method" textAlignment="CENTER" textFill="WHITE">
+                            <HBox.margin>
+                                <Insets bottom="10.0" left="5.0" right="5.0" />
+                            </HBox.margin></Button>
+                        <Button fx:id="btnClear" mnemonicParsing="false" onAction="#btnClearClicked" style="-fx-background-radius: 5; -fx-background-color: #002db3;" text="Reset" textAlignment="CENTER" textFill="WHITE">
+                            <HBox.margin>
+                                <Insets bottom="10.0" left="5.0" right="5.0" />
+                            </HBox.margin></Button>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </bottom>
+    <center>
+        <LineChart fx:id="graph" legendVisible="false" minHeight="450.0" BorderPane.alignment="CENTER">
+            <xAxis>
+                <NumberAxis label="time" minorTickLength="0.0" side="BOTTOM" />
+            </xAxis>
+            <yAxis>
+                <NumberAxis label="x" minorTickLength="0.0" side="LEFT" />
+            </yAxis>
+            <BorderPane.margin>
+                <Insets top="5.0" />
+            </BorderPane.margin>
+         <padding>
+            <Insets top="5.0" />
+         </padding>
+        </LineChart>
+    </center>
+   <top>
+      <VBox fx:id="vbMenu" prefHeight="20.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <MenuBar>
+                <Menu text="Main">
+                    <MenuItem onAction="#handleSaveClicked" text="Save..." />
+                    <MenuItem onAction="#handleExitClicked" text="Exit" />
+                </Menu>
+                <Menu text="Help">
+                    <MenuItem onAction="#handleAboutClicked" text="About application" />
+                </Menu>
+            </MenuBar>
+         </children>
+      </VBox>
+   </top>
+</BorderPane>
